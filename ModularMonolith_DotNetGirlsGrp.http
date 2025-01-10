@@ -1,0 +1,6 @@
+@ModularMonolith_DotNetGirlsGrp_HostAddress = http://localhost:5184
+
+GET {{ModularMonolith_DotNetGirlsGrp_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
