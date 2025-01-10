@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ModularMonolith_DotNetGirlsGrp.DoctorAvailability.BusinessLogic;
-using ModularMonolith_DotNetGirlsGrp.DoctorAvailability.Data;
 
 namespace ModularMonolith_DotNetGirlsGrp.DoctorAvailability.Controller
 {

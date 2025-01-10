@@ -1,4 +1,6 @@
-﻿namespace ModularMonolith_DotNetGirlsGrp.DoctorAvailability.Data
+﻿using ModularMonolith_DotNetGirlsGrp.SharedUtilities.Data;
+
+namespace ModularMonolith_DotNetGirlsGrp.DoctorAvailability.Data
 {
     public class DoctorAvailabilityRepo
     {
