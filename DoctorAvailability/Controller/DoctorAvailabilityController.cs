@@ -27,5 +27,7 @@ namespace ModularMonolith_DotNetGirlsGrp.DoctorAvailability.Controller
             var slots = _service.GetSlots();
             return Ok(slots);
         }
+
+        //Debug
     }
 }
