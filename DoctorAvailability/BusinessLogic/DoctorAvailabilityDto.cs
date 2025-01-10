@@ -8,5 +8,6 @@
         public DateTime Time { get; set; }
         public bool IsReserved { get; set; }
         public decimal Cost { get; set; }
+        //comment 
     }
 }
