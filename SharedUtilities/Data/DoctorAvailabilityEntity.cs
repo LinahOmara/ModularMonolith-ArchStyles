@@ -1,6 +1,6 @@
 ﻿namespace ModularMonolith_DotNetGirlsGrp.SharedUtilities.Data
 {
-    public class DoctorAvailabilityModel
+    public class DoctorAvailabilityEntity
     {
         public Guid Id { get; set; }
         public Guid DoctorId { get; set; }

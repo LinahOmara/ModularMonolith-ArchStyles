@@ -6,7 +6,7 @@ namespace ModularMonolith_DotNetGirlsGrp.DoctorAppointmentManagement.Core.Domain
     {
         public Guid Id { get; set; }
         public Guid SlotId { get; set; }
-        public virtual DoctorAvailabilityModel Slot { get; set; }
+        public virtual DoctorAvailabilityEntity Slot { get; set; }
         public Guid PatientId { get; set; }
         public string? PatientName { get; set; }
         public DateTime ReservedAt { get; set; }

@@ -6,16 +6,16 @@ namespace ModularMonolith_DotNetGirlsGrp.DoctorAppointmentManagement.Shell.Repos
 {
     public class DoctorAppointmentManagementRepo : IDoctorAppointmentManagementRepo
     {
-        private List<AppointmentBookingModel> _appointments;
+        private List<AppointmentBookingEntity> _appointments;
         public DoctorAppointmentManagementRepo()
         {
-            _appointments = new List<AppointmentBookingModel> { };
+            _appointments = new List<AppointmentBookingEntity> { };
         }
 
         public IEnumerable<Appointment> GetUpcomingAppointments()
         {
             DateTime getNow = DateTime.Now;
-            IEnumerable<AppointmentBookingModel> upcomingAppointments = _appointments.Where(app => app.Slot.Time >= getNow);
+            IEnumerable<AppointmentBookingEntity> upcomingAppointments = _appointments.Where(app => app.Slot.Time >= getNow);
             return upcomingAppointments.Select(app=>new Appointment
             {
                 Id= app.Id, 
@@ -30,7 +30,7 @@ namespace ModularMonolith_DotNetGirlsGrp.DoctorAppointmentManagement.Shell.Repos
 
         public bool UpdateAppointmentStatus(Guid appointmentId, AppointmentStatus status)
         {
-            AppointmentBookingModel? appointment = _appointments.Where(app => app.Id == appointmentId).FirstOrDefault();
+            AppointmentBookingEntity? appointment = _appointments.Where(app => app.Id == appointmentId).FirstOrDefault();
             if (appointment == null)
             {
                 throw new ArgumentException("the appointment not found");

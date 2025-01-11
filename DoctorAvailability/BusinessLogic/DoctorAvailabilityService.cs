@@ -15,7 +15,7 @@ namespace ModularMonolith_DotNetGirlsGrp.DoctorAvailability.BusinessLogic
 
         public bool AddSlots(DoctorAvailabilityDto availability)
         {
-            var availabilityModel = new DoctorAvailabilityModel
+            var availabilityModel = new DoctorAvailabilityEntity
             {
                 Id = new Guid(),
                 DoctorId = availability.DoctorId,
@@ -71,7 +71,7 @@ namespace ModularMonolith_DotNetGirlsGrp.DoctorAvailability.BusinessLogic
                 });
         }
 
-        private (bool isSucceeded, string errorMsg) IsValidSlot(DoctorAvailabilityModel availability)
+        private (bool isSucceeded, string errorMsg) IsValidSlot(DoctorAvailabilityEntity availability)
         {
             var existingSlot = GetSlots()
                 .Where(s => s.Time == availability.Time);

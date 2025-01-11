@@ -4,17 +4,17 @@ namespace ModularMonolith_DotNetGirlsGrp.DoctorAvailability.Data
 {
     public class DoctorAvailabilityRepo
     {
-        private static List<DoctorAvailabilityModel> _doctorAvailabilities; //TODO Handle in Memory Lists
+        private static List<DoctorAvailabilityEntity> _doctorAvailabilities; //TODO Handle in Memory Lists
 
         public DoctorAvailabilityRepo()
         {
-            _doctorAvailabilities ??= new List<DoctorAvailabilityModel>();
+            _doctorAvailabilities ??= new List<DoctorAvailabilityEntity>();
         }
 
         /// <summary>
         /// Add a new slot
         /// </summary>
-        public bool AddSlot(DoctorAvailabilityModel availability)
+        public bool AddSlot(DoctorAvailabilityEntity availability)
         {
             var isSucceeded = false;
 
@@ -35,12 +35,12 @@ namespace ModularMonolith_DotNetGirlsGrp.DoctorAvailability.Data
         /// <summary>
         /// Return doctor Slots
         /// </summary>
-        public IEnumerable<DoctorAvailabilityModel> GetSlots() 
+        public IEnumerable<DoctorAvailabilityEntity> GetSlots() 
         {
             return _doctorAvailabilities;
         }
 
-        public IEnumerable<DoctorAvailabilityModel> GetAvailabeSlots()
+        public IEnumerable<DoctorAvailabilityEntity> GetAvailabeSlots()
         {
             return _doctorAvailabilities.Where(da => da.IsReserved == false);
         }
