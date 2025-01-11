@@ -11,7 +11,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="AppointmentBooking\" />
+    <Folder Include="AppointmentBooking\API\" />
+    <Folder Include="AppointmentBooking\Application\" />
     <Folder Include="SharedUtilities\Exceptions\" />
   </ItemGroup>
 

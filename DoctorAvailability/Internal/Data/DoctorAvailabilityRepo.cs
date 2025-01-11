@@ -1,16 +1,27 @@
 ﻿using ModularMonolith_DotNetGirlsGrp.SharedUtilities.Data;
 
-namespace ModularMonolith_DotNetGirlsGrp.DoctorAvailability.Data
+namespace ModularMonolith_DotNetGirlsGrp.DoctorAvailability.Internal.Data
 {
     public class DoctorAvailabilityRepo
     {
-        private static List<DoctorAvailabilityEntity> _doctorAvailabilities; //TODO Handle in Memory Lists
+        DBContext _dbContext;
+        private static List<DoctorAvailabilityEntity> _doctorAvailabilities; 
 
-        public DoctorAvailabilityRepo()
+        //public DoctorAvailabilityRepo()
+        //{
+        //    _doctorAvailabilities ??= new List<DoctorAvailabilityEntity>();
+        //}
+
+        public DoctorAvailabilityRepo(DBContext dBContext)
         {
-            _doctorAvailabilities ??= new List<DoctorAvailabilityEntity>();
+            _dbContext = dBContext;
+            _doctorAvailabilities=_dbContext.GetDoctorAvailabilitiesEntities();
         }
-
+        public DoctorAvailabilityRepo() //revisit it again
+        {
+            _dbContext=new DBContext();
+            _doctorAvailabilities = _dbContext.GetDoctorAvailabilitiesEntities();
+        }
         /// <summary>
         /// Add a new slot
         /// </summary>
@@ -20,9 +31,9 @@ namespace ModularMonolith_DotNetGirlsGrp.DoctorAvailability.Data
 
             try
             {
-                 availability.Id = Guid.NewGuid();   
+                availability.Id = Guid.NewGuid();
                 _doctorAvailabilities.Add(availability);
-                isSucceeded = true;
+                 isSucceeded = true;
             }
             catch (Exception)
             {
@@ -35,7 +46,7 @@ namespace ModularMonolith_DotNetGirlsGrp.DoctorAvailability.Data
         /// <summary>
         /// Return doctor Slots
         /// </summary>
-        public IEnumerable<DoctorAvailabilityEntity> GetSlots() 
+        public IEnumerable<DoctorAvailabilityEntity> GetSlots()
         {
             return _doctorAvailabilities;
         }

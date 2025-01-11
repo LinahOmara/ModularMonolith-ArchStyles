@@ -1,7 +1,7 @@
-﻿using ModularMonolith_DotNetGirlsGrp.DoctorAvailability.Data;
+﻿using ModularMonolith_DotNetGirlsGrp.DoctorAvailability.Internal.Data;
 using ModularMonolith_DotNetGirlsGrp.SharedUtilities.Data;
 
-namespace ModularMonolith_DotNetGirlsGrp.DoctorAvailability.BusinessLogic
+namespace ModularMonolith_DotNetGirlsGrp.DoctorAvailability.Internal.BusinessLogic
 {
     // TODO add global exception annotation
     public class DoctorAvailabilityService
@@ -26,7 +26,7 @@ namespace ModularMonolith_DotNetGirlsGrp.DoctorAvailability.BusinessLogic
             };
 
             var (isSucceeded, msg) = IsValidSlot(availabilityModel);
-            
+
             if (!isSucceeded)
             {
                 throw new ArgumentException(msg);
@@ -43,7 +43,7 @@ namespace ModularMonolith_DotNetGirlsGrp.DoctorAvailability.BusinessLogic
             return isAdded;
         }
 
-        public IEnumerable<DoctorAvailabilityDto> GetSlots() 
+        public IEnumerable<DoctorAvailabilityDto> GetSlots()
         {
             return _repo.GetSlots()
                  .Select(s => new DoctorAvailabilityDto

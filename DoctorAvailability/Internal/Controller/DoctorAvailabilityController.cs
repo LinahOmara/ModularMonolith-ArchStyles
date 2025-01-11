@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using ModularMonolith_DotNetGirlsGrp.DoctorAvailability.BusinessLogic;
+using ModularMonolith_DotNetGirlsGrp.DoctorAvailability.Internal.BusinessLogic;
 
-namespace ModularMonolith_DotNetGirlsGrp.DoctorAvailability.Controller
+namespace ModularMonolith_DotNetGirlsGrp.DoctorAvailability.Internal.Controller
 {
     public class DoctorAvailabilityController : ControllerBase
     {
@@ -13,7 +13,7 @@ namespace ModularMonolith_DotNetGirlsGrp.DoctorAvailability.Controller
         }
 
         [HttpPost, Route("api/doctors/availabilities")]
-        public IActionResult AddSlot ([FromBody] DoctorAvailabilityDto doctorAvailability)
+        public IActionResult AddSlot([FromBody] DoctorAvailabilityDto doctorAvailability)
         {
             _service.AddSlots(doctorAvailability);
             return Ok();

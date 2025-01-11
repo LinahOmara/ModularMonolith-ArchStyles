@@ -1,6 +1,7 @@
 using ModularMonolith_DotNetGirlsGrp.DoctorAppointmentManagement.Core.Business;
 using ModularMonolith_DotNetGirlsGrp.DoctorAppointmentManagement.Core.Ports;
 using ModularMonolith_DotNetGirlsGrp.DoctorAppointmentManagement.Shell.Repositories;
+using ModularMonolith_DotNetGirlsGrp.SharedUtilities.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,7 +14,7 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<IDoctorAppointmentManagementRepo, DoctorAppointmentManagementRepo>();
 builder.Services.AddScoped<IDoctorAppointmentManagementService, DoctorAppointmentManagementService>();
-
+builder.Services.AddSingleton<DBContext>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

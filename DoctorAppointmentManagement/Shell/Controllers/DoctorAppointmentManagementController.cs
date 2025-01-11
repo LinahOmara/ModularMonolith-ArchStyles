@@ -3,7 +3,7 @@ using ModularMonolith_DotNetGirlsGrp.DoctorAppointmentManagement.Core.Business;
 using ModularMonolith_DotNetGirlsGrp.DoctorAppointmentManagement.Core.DomainModels;
 using ModularMonolith_DotNetGirlsGrp.DoctorAppointmentManagement.Core.Ports;
 using ModularMonolith_DotNetGirlsGrp.DoctorAppointmentManagement.Shell.Controllers.DTOs;
-using ModularMonolith_DotNetGirlsGrp.DoctorAvailability.BusinessLogic;
+using ModularMonolith_DotNetGirlsGrp.DoctorAvailability.Internal.BusinessLogic;
 
 namespace ModularMonolith_DotNetGirlsGrp.DoctorAppointmentManagement.Shell.Controllers
 {

@@ -6,12 +6,20 @@ namespace ModularMonolith_DotNetGirlsGrp.DoctorAppointmentManagement.Shell.Repos
 {
     public class DoctorAppointmentManagementRepo : IDoctorAppointmentManagementRepo
     {
-        private List<AppointmentBookingEntity> _appointments;
-        public DoctorAppointmentManagementRepo()
-        {
-            _appointments = new List<AppointmentBookingEntity> { };
-        }
 
+        DBContext _dbContext;
+         private static List<AppointmentBookingEntity> _appointments;
+        //public DoctorAppointmentManagementRepo()
+        //{
+        //    _appointments = new List<AppointmentBookingEntity> { };
+        //}
+
+        public DoctorAppointmentManagementRepo(DBContext dBContext)
+        {
+            _dbContext = dBContext;
+            _appointments=_dbContext.GetAppointmentsEntities(); 
+
+        }
         public IEnumerable<Appointment> GetUpcomingAppointments()
         {
             DateTime getNow = DateTime.Now;
