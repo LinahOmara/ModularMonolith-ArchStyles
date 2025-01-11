@@ -1,3 +1,7 @@
+using ModularMonolith_DotNetGirlsGrp.DoctorAppointmentManagement.Core.Business;
+using ModularMonolith_DotNetGirlsGrp.DoctorAppointmentManagement.Core.Ports;
+using ModularMonolith_DotNetGirlsGrp.DoctorAppointmentManagement.Shell.Repositories;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -6,6 +10,9 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddScoped<IDoctorAppointmentManagementRepo, DoctorAppointmentManagementRepo>();
+builder.Services.AddScoped<IDoctorAppointmentManagementService, DoctorAppointmentManagementService>();
 
 var app = builder.Build();
 

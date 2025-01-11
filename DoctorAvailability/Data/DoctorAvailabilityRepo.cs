@@ -8,7 +8,7 @@ namespace ModularMonolith_DotNetGirlsGrp.DoctorAvailability.Data
 
         public DoctorAvailabilityRepo()
         {
-            _doctorAvailabilities = new List<DoctorAvailabilityModel>();
+            _doctorAvailabilities ??= new List<DoctorAvailabilityModel>();
         }
 
         /// <summary>
@@ -20,6 +20,7 @@ namespace ModularMonolith_DotNetGirlsGrp.DoctorAvailability.Data
 
             try
             {
+                 availability.Id = Guid.NewGuid();   
                 _doctorAvailabilities.Add(availability);
                 isSucceeded = true;
             }

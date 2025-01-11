@@ -9,13 +9,8 @@
         public string PatientName { get; set; }
 
         public DateTime ReservedAt { get; set; }
-        public AppointmentStatus AppointmentStatus {get;set;}
+        public string AppointmentStatus {get;set;}
     }
 }
 
-public enum AppointmentStatus
-{ 
-    Complete,
-    Cancel,
-    Reserved
-}
+

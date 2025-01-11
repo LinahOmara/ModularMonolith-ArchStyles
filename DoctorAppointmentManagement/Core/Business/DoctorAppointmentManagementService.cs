@@ -1,19 +1,18 @@
-﻿using ModularMonolith_DotNetGirlsGrp.DoctorAppointmentManagement.Core.Ports;
+﻿using ModularMonolith_DotNetGirlsGrp.DoctorAppointmentManagement.Core.DomainModels;
+using ModularMonolith_DotNetGirlsGrp.DoctorAppointmentManagement.Core.Ports;
 
-using ModularMonolith_DotNetGirlsGrp.DoctorAppointmentManagement.Shell;
-using ModularMonolith_DotNetGirlsGrp.SharedUtilities.Data;
-
+ 
 namespace ModularMonolith_DotNetGirlsGrp.DoctorAppointmentManagement.Core.Business
 {
-    public class DoctorAppointmentManagementService
+    public class DoctorAppointmentManagementService: IDoctorAppointmentManagementService
     {
         private IDoctorAppointmentManagementRepo _repo;
-        public DoctorAppointmentManagementService()
+        public DoctorAppointmentManagementService(IDoctorAppointmentManagementRepo repo)
         {
-            _repo = new DoctorAppointmentManagementRepo();
+            _repo = repo;
         }
-        //Todo change AppointmentBookingModel  with proper Dto
-        public IEnumerable<AppointmentBookingModel> GetUpcomingAppointments()
+         
+        public IEnumerable<Appointment> GetUpcomingAppointments()
         {
             return _repo.GetUpcomingAppointments();
         }
