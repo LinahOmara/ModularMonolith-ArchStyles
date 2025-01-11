@@ -20,16 +20,16 @@ namespace ModularMonolith_DotNetGirlsGrp.DoctorAppointmentManagement.Shell
 
         public bool UpdateAppointmentStatus(Guid appointmentId ,AppointmentStatus status)
         {
-            AppointmentBookingModel? getappointment = _appointments.Where(app => app.Id == appointmentId).FirstOrDefault();
-            if (getappointment == null ) 
+            AppointmentBookingModel? appointment = _appointments.Where(app => app.Id == appointmentId).FirstOrDefault();
+            if (appointment == null ) 
             {
                 throw new ArgumentException("the appointment not found");
             }
-            if (getappointment?.AppointmentStatus != AppointmentStatus.Reserved) 
+            if (appointment?.AppointmentStatus != AppointmentStatus.Reserved) 
             {
-                throw new Exception($"Appointment is already {getappointment?.AppointmentStatus}");
+                throw new Exception($"Appointment is already {appointment?.AppointmentStatus}");
             }
-            getappointment.AppointmentStatus = status;
+            appointment.AppointmentStatus = status;
             return true;
         }
     }
