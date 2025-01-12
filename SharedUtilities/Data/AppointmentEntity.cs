@@ -1,10 +1,10 @@
 ﻿namespace ModularMonolith_DotNetGirlsGrp.SharedUtilities.Data
 {
-    public class AppointmentBookingEntity
+    public class AppointmentEntity
     {
         public Guid Id { get; set; }
         public Guid SlotId { get; set; }
-        public virtual DoctorAvailabilityEntity Slot { get; set; }
+        public virtual SlotEntity Slot { get; set; }
         public Guid PatientId { get; set; }
         public string PatientName { get; set; }
 

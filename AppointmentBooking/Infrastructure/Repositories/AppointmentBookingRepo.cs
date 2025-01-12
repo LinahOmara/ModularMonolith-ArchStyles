@@ -1,5 +1,5 @@
 ﻿using ModularMonolith_DotNetGirlsGrp.AppointmentBooking.Domain.Contracts;
-using ModularMonolith_DotNetGirlsGrp.DoctorAppointmentManagement.Core.DomainModels;
+using ModularMonolith_DotNetGirlsGrp.AppointmentBooking.Core.DomainModels;
 using ModularMonolith_DotNetGirlsGrp.SharedUtilities.Data;
 
 namespace ModularMonolith_DotNetGirlsGrp.AppointmentBooking.Infrastructure.Repositories
@@ -7,19 +7,28 @@ namespace ModularMonolith_DotNetGirlsGrp.AppointmentBooking.Infrastructure.Repos
     public class AppointmentBookingRepo : IAppointmentBookingRepo
     {
         DBContext _dbContext;
-        private static List<AppointmentBookingEntity> _appointments;
+        private static List<AppointmentEntity> _appointments;
 
         public AppointmentBookingRepo(DBContext dBContext)
         {
             _dbContext = dBContext;
             _appointments = _dbContext.GetAppointmentsEntities();
-
         }
-        public bool BookAppointment(Appointment appointment)
+
+        public bool AddAppointment(Appointment app)
         {
-            appointment.Slot.IsReserved = true; 
-            appointment.ReservedAt = DateTime.Now;
-            return true;   //TodDo 
+            var newAppoitment = new AppointmentEntity
+            {
+                Id = new Guid(),
+                AppointmentStatus = app.AppointmentStatus.ToString(),
+                PatientId = app.PatientId,
+                PatientName = app.PatientName,
+                ReservedAt = app.ReservedAt,
+                SlotId = app.SlotId,
+            };
+
+            _appointments.Add(newAppoitment);
+            return true;
 
         }
     }

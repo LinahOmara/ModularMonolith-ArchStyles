@@ -5,27 +5,24 @@ namespace ModularMonolith_DotNetGirlsGrp.DoctorAvailability.Internal.Data
     public class DoctorAvailabilityRepo
     {
         DBContext _dbContext;
-        private static List<DoctorAvailabilityEntity> _doctorAvailabilities; 
-
-        //public DoctorAvailabilityRepo()
-        //{
-        //    _doctorAvailabilities ??= new List<DoctorAvailabilityEntity>();
-        //}
+        private static List<SlotEntity> _doctorAvailabilities; 
 
         public DoctorAvailabilityRepo(DBContext dBContext)
         {
             _dbContext = dBContext;
-            _doctorAvailabilities=_dbContext.GetDoctorAvailabilitiesEntities();
+            _doctorAvailabilities = _dbContext.GetDoctorAvailabilitiesEntities();
         }
+
         public DoctorAvailabilityRepo() //revisit it again
         {
             _dbContext=new DBContext();
             _doctorAvailabilities = _dbContext.GetDoctorAvailabilitiesEntities();
+
         }
         /// <summary>
         /// Add a new slot
         /// </summary>
-        public bool AddSlot(DoctorAvailabilityEntity availability)
+        public bool AddSlot(SlotEntity availability)
         {
             var isSucceeded = false;
 
@@ -46,14 +43,28 @@ namespace ModularMonolith_DotNetGirlsGrp.DoctorAvailability.Internal.Data
         /// <summary>
         /// Return doctor Slots
         /// </summary>
-        public IEnumerable<DoctorAvailabilityEntity> GetSlots()
+        public IEnumerable<SlotEntity> GetSlots()
         {
             return _doctorAvailabilities;
         }
 
-        public IEnumerable<DoctorAvailabilityEntity> GetAvailabeSlots()
+        public IEnumerable<SlotEntity> GetAvailabeSlots()
         {
             return _doctorAvailabilities.Where(da => da.IsReserved == false);
+        }
+
+        public bool ReserveSlot(Guid slotId)
+        {
+            var slotToUpdate = _doctorAvailabilities.SingleOrDefault(s => s.Id == slotId);
+            
+            if(slotToUpdate == null)
+            {
+                throw new ArgumentNullException($"Cant find slot with Id = {slotId}");
+            }
+
+            slotToUpdate.IsReserved = true;
+
+            return true;
         }
     }
 }

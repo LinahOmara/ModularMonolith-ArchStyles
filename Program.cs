@@ -1,6 +1,12 @@
+using ModularMonolith_DotNetGirlsGrp.AppointmentBooking.Application;
+using ModularMonolith_DotNetGirlsGrp.AppointmentBooking.Domain.Contracts;
+using ModularMonolith_DotNetGirlsGrp.AppointmentBooking.Infrastructure.Gateways;
+using ModularMonolith_DotNetGirlsGrp.AppointmentBooking.Infrastructure.Repositories;
 using ModularMonolith_DotNetGirlsGrp.DoctorAppointmentManagement.Core.Business;
 using ModularMonolith_DotNetGirlsGrp.DoctorAppointmentManagement.Core.Ports;
 using ModularMonolith_DotNetGirlsGrp.DoctorAppointmentManagement.Shell.Repositories;
+using ModularMonolith_DotNetGirlsGrp.DoctorAvailability.Internal.Data;
+using ModularMonolith_DotNetGirlsGrp.DoctorAvailability.Shared;
 using ModularMonolith_DotNetGirlsGrp.SharedUtilities.Data;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,9 +18,25 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddScoped<IDoctorAppointmentManagementRepo, DoctorAppointmentManagementRepo>();
-builder.Services.AddScoped<IDoctorAppointmentManagementService, DoctorAppointmentManagementService>();
+//DB
 builder.Services.AddSingleton<DBContext>();
+
+// repos
+builder.Services.AddScoped<IDoctorAppointmentManagementRepo, DoctorAppointmentManagementRepo>();
+builder.Services.AddScoped<IAppointmentBookingRepo, AppointmentBookingRepo>();
+builder.Services.AddScoped<DoctorAvailabilityRepo>();
+
+// apis
+builder.Services.AddScoped<IDoctorAvailabiltyApi, DoctorAvailabiltyApi>();
+
+// gateways
+builder.Services.AddScoped<DoctorAvailabiltiyGateway>();
+
+// services
+builder.Services.AddScoped<IDoctorAppointmentManagementService, DoctorAppointmentManagementService>();
+builder.Services.AddScoped<IBookAppointmentService, BookAppointmentService>();
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

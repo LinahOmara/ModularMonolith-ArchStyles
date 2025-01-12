@@ -8,7 +8,7 @@ namespace ModularMonolith_DotNetGirlsGrp.DoctorAppointmentManagement.Shell.Repos
     {
 
         DBContext _dbContext;
-         private static List<AppointmentBookingEntity> _appointments;
+         private static List<AppointmentEntity> _appointments;
         //public DoctorAppointmentManagementRepo()
         //{
         //    _appointments = new List<AppointmentBookingEntity> { };
@@ -20,25 +20,24 @@ namespace ModularMonolith_DotNetGirlsGrp.DoctorAppointmentManagement.Shell.Repos
             _appointments=_dbContext.GetAppointmentsEntities(); 
 
         }
+
         public IEnumerable<Appointment> GetUpcomingAppointments()
         {
             DateTime getNow = DateTime.Now;
-            IEnumerable<AppointmentBookingEntity> upcomingAppointments = _appointments.Where(app => app.Slot.Time >= getNow);
+            IEnumerable<AppointmentEntity> upcomingAppointments = _appointments.Where(app => app.Slot.Time >= getNow); // TODO fix Data linkage 
             return upcomingAppointments.Select(app=>new Appointment
             {
                 Id= app.Id, 
                 AppointmentStatus= Enum.Parse<AppointmentStatus>(app.AppointmentStatus),
                 PatientId =app.PatientId,
                 PatientName=app.PatientName,
-                ReservedAt=app.ReservedAt,  
-                SlotId=app.SlotId,  
-                Slot= app.Slot
+                ReservedAt=app.ReservedAt,
             });
         }
 
-        public bool UpdateAppointmentStatus(Guid appointmentId, AppointmentStatus status)
+        public bool UpdateAppointmentStatus(Guid appointmentId, AppointmentStatus status) // TODO Test API
         {
-            AppointmentBookingEntity? appointment = _appointments.Where(app => app.Id == appointmentId).FirstOrDefault();
+            AppointmentEntity? appointment = _appointments.Where(app => app.Id == appointmentId).FirstOrDefault();
             if (appointment == null)
             {
                 throw new ArgumentException("the appointment not found");

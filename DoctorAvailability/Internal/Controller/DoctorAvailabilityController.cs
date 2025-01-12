@@ -27,6 +27,12 @@ namespace ModularMonolith_DotNetGirlsGrp.DoctorAvailability.Internal.Controller
             return Ok(slots);
         }
 
-        //Debug
+        [HttpGet, Route("api/doctors/availabileSlots/")]
+        public ActionResult<IEnumerable<DoctorAvailabilityDto>> GetAvailabeSlot()
+        {
+            var availableSlots = _service.GetAvailabeSlots();
+            return Ok(availableSlots);
+        }
+
     }
 }

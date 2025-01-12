@@ -4,6 +4,7 @@ namespace ModularMonolith_DotNetGirlsGrp.DoctorAvailability.Shared
 {
     public interface IDoctorAvailabiltyApi
     {
-        public IEnumerable<DoctorAvailibleSlotsDto> GetAvailabeSlots();
+        public IEnumerable<SlotsDto> GetAvailabeSlots();
+        public bool ReserveSlot(Guid slotId);
     }
 }

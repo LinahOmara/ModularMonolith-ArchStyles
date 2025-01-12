@@ -2,8 +2,8 @@
 
 namespace ModularMonolith_DotNetGirlsGrp.AppointmentBooking.Domain.Contracts
 {
-    public interface IAppointmentBookingRepo
+    public interface IBookAppointmentService
     {
-      bool AddAppointment(Appointment appointment);
+      bool BookAppointment(Appointment appointment);
     }
 }
