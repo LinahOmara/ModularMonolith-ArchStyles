@@ -9,6 +9,7 @@ namespace ModularMonolith_DotNetGirlsGrp.DoctorAppointmentManagement.Shell.Repos
 
         DBContext _dbContext;
          private static List<AppointmentEntity> _appointments;
+         
         //public DoctorAppointmentManagementRepo()
         //{
         //    _appointments = new List<AppointmentBookingEntity> { };
@@ -19,12 +20,13 @@ namespace ModularMonolith_DotNetGirlsGrp.DoctorAppointmentManagement.Shell.Repos
             _dbContext = dBContext;
             _appointments=_dbContext.GetAppointmentsEntities(); 
 
+
         }
 
         public IEnumerable<Appointment> GetUpcomingAppointments()
         {
             DateTime getNow = DateTime.Now;
-            IEnumerable<AppointmentEntity> upcomingAppointments = _appointments.Where(app => app.Slot.Time >= getNow); // TODO fix Data linkage 
+            IEnumerable<AppointmentEntity> upcomingAppointments = _appointments.Where(app => app.ReservedAt >= getNow);  
             return upcomingAppointments.Select(app=>new Appointment
             {
                 Id= app.Id, 

@@ -18,14 +18,21 @@ namespace ModularMonolith_DotNetGirlsGrp.AppointmentBooking.Application
         public bool BookAppointment(Appointment appointment)
         {
             // TODO: Check that the slot is not reserved already 
+            var availableSlotes = _doctorAvailabiltiyGateway.GetAvailabeSlots();
 
-            // add appointment data
-            bool appAdded = AddBookedAppointment(appointment);
+            var firstAvail = availableSlotes.Where(x=>x.Id==appointment.SlotId).FirstOrDefault();
+            if (firstAvail != null && !firstAvail.IsReserved)
+            {
+                // add appointment data
+                bool appAdded = AddBookedAppointment(appointment);
 
-            // update slot data
-            bool slotUpdated = UpdateSlotForBookedAppointment(appointment);
+                // update slot data
+                bool slotUpdated = UpdateSlotForBookedAppointment(appointment);
 
-            return appAdded && slotUpdated;
+                return appAdded && slotUpdated;
+            }
+
+            else throw new Exception($"Slot is already reserved {appointment.SlotId}");
         }
 
         private bool UpdateSlotForBookedAppointment(Appointment appointment)

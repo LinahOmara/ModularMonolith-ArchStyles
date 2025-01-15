@@ -14,6 +14,7 @@ namespace ModularMonolith_DotNetGirlsGrp.DoctorAppointmentManagement.Core.Busine
          
         public IEnumerable<Appointment> GetUpcomingAppointments()
         {
+
             return _repo.GetUpcomingAppointments();
         }
         public bool UpdateAppointmentStatus(Guid appointmentId, AppointmentStatus status)
