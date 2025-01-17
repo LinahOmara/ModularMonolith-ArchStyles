@@ -31,7 +31,7 @@ builder.Services.AddSingleton<DBContext>();
 builder.Services.AddScoped<IDoctorAppointmentManagementRepo, DoctorAppointmentManagementRepo>();
 builder.Services.AddScoped<IAppointmentBookingRepo, AppointmentBookingRepo>();
 builder.Services.AddScoped<DoctorAvailabilityRepo>();
-builder.Services.AddScoped<AppointementBookingHandler>();
+builder.Services.AddTransient<AppointementBookingHandler>();
 // apis
 builder.Services.AddScoped<IDoctorAvailabiltyApi, DoctorAvailabiltyApi>();
 
