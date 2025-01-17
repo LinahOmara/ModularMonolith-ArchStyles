@@ -1,8 +1,9 @@
-﻿using ModularMonolith_DotNetGirlsGrp.AppointmentBooking.Domain.Contracts;
-using ModularMonolith_DotNetGirlsGrp.AppointmentBooking.Core.DomainModels;
-using ModularMonolith_DotNetGirlsGrp.SharedUtilities.Data;
+﻿using ModularMonolith_DotNetGirlsGrp.SharedUtilities.Data;
+using ModularMonolith_DotNetGirlsGrp.AppointmentBooking.Internal.Domain.Contracts;
+using ModularMonolith_DotNetGirlsGrp.AppointmentBooking.Internal.Domain.Models;
 
-namespace ModularMonolith_DotNetGirlsGrp.AppointmentBooking.Infrastructure.Repositories
+
+namespace ModularMonolith_DotNetGirlsGrp.AppointmentBooking.Internal.Infrastructure.Repositories
 {
     public class AppointmentBookingRepo : IAppointmentBookingRepo
     {

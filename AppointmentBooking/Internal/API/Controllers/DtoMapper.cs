@@ -1,10 +1,10 @@
-﻿using ModularMonolith_DotNetGirlsGrp.AppointmentBooking.Core.DomainModels;
+﻿using ModularMonolith_DotNetGirlsGrp.AppointmentBooking.Internal.Domain.Models;
 
-namespace ModularMonolith_DotNetGirlsGrp.AppointmentBooking.API.Controllers
+namespace ModularMonolith_DotNetGirlsGrp.AppointmentBooking.Internal.API.Controllers
 {
     public static class DtoMapper
     {
-        public static Appointment ToAppointment (this BookAppointmentRequest request)
+        public static Appointment ToAppointment(this BookAppointmentRequest request)
         {
             return new Appointment
             {

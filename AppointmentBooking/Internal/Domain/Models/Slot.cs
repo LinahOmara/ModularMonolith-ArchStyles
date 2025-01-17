@@ -1,4 +1,4 @@
-﻿namespace ModularMonolith_DotNetGirlsGrp.AppointmentBooking.Core.DomainModels
+﻿namespace ModularMonolith_DotNetGirlsGrp.AppointmentBooking.Internal.Domain.Models
 {
     public class Slot
     {

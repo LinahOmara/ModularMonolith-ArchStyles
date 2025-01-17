@@ -1,5 +1,5 @@
-﻿using ModularMonolith_DotNetGirlsGrp.AppointmentBooking.Domain.Events;
-using ModularMonolith_DotNetGirlsGrp.SharedUtilities;
+﻿using ModularMonolith_DotNetGirlsGrp.SharedUtilities;
+using ModularMonolith_DotNetGirlsGrp.AppointmentBooking.Shared;
 
 namespace ModularMonolith_DotNetGirlsGrp.AppointmentConfirmation.Application.EventHandlers
 {

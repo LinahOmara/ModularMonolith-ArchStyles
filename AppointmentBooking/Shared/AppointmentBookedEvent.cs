@@ -1,4 +1,4 @@
-﻿namespace ModularMonolith_DotNetGirlsGrp.AppointmentBooking.Domain.Events
+﻿namespace ModularMonolith_DotNetGirlsGrp.AppointmentBooking.Shared
 {
     public class AppointmentBookedEvent
     {

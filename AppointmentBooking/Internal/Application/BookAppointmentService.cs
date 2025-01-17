@@ -1,8 +1,8 @@
-﻿using ModularMonolith_DotNetGirlsGrp.AppointmentBooking.Domain.Contracts;
-using ModularMonolith_DotNetGirlsGrp.AppointmentBooking.Infrastructure.Gateways;
-using ModularMonolith_DotNetGirlsGrp.AppointmentBooking.Core.DomainModels;
+﻿using ModularMonolith_DotNetGirlsGrp.AppointmentBooking.Internal.Domain.Contracts;
+using ModularMonolith_DotNetGirlsGrp.AppointmentBooking.Internal.Domain.Models;
+using ModularMonolith_DotNetGirlsGrp.AppointmentBooking.Internal.Infrastructure.Gateways;
 
-namespace ModularMonolith_DotNetGirlsGrp.AppointmentBooking.Application
+namespace ModularMonolith_DotNetGirlsGrp.AppointmentBooking.Internal.Application
 {
     public class BookAppointmentService : IBookAppointmentService
     {
@@ -20,7 +20,7 @@ namespace ModularMonolith_DotNetGirlsGrp.AppointmentBooking.Application
             // TODO: Check that the slot is not reserved already 
             var availableSlotes = _doctorAvailabiltiyGateway.GetAvailabeSlots();
 
-            var firstAvail = availableSlotes.Where(x=>x.Id==appointment.SlotId).FirstOrDefault();
+            var firstAvail = availableSlotes.Where(x => x.Id == appointment.SlotId).FirstOrDefault();
             if (firstAvail != null && !firstAvail.IsReserved)
             {
                 // add appointment data

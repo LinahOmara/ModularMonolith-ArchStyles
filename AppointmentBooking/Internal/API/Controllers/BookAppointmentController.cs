@@ -1,8 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using ModularMonolith_DotNetGirlsGrp.AppointmentBooking.Domain.Contracts;
-using ModularMonolith_DotNetGirlsGrp.AppointmentBooking.Core.DomainModels;
+using ModularMonolith_DotNetGirlsGrp.AppointmentBooking.Internal.Domain.Contracts;
 
-namespace ModularMonolith_DotNetGirlsGrp.AppointmentBooking.API.Controllers
+namespace ModularMonolith_DotNetGirlsGrp.AppointmentBooking.Internal.API.Controllers
 {
     public class BookAppointmentController : ControllerBase
     {

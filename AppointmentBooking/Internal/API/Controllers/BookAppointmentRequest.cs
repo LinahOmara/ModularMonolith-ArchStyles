@@ -1,6 +1,5 @@
-﻿using ModularMonolith_DotNetGirlsGrp.AppointmentBooking.Core.DomainModels;
-
-namespace ModularMonolith_DotNetGirlsGrp.AppointmentBooking.API.Controllers
+﻿
+namespace ModularMonolith_DotNetGirlsGrp.AppointmentBooking.Internal.API.Controllers
 {
     public class BookAppointmentRequest
     {

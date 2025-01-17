@@ -1,21 +1,20 @@
-﻿using ModularMonolith_DotNetGirlsGrp.AppointmentBooking.Core.DomainModels;
-using ModularMonolith_DotNetGirlsGrp.DoctorAvailability.Shared;
+﻿using ModularMonolith_DotNetGirlsGrp.DoctorAvailability.Shared;
 
-namespace ModularMonolith_DotNetGirlsGrp.AppointmentBooking.Infrastructure.Gateways
+namespace ModularMonolith_DotNetGirlsGrp.AppointmentBooking.Internal.Infrastructure.Gateways
 {
     public class DoctorAvailabiltiyGateway
     {
         private IDoctorAvailabiltyApi _doctorAvailabiltyApi;
-        
+
         public DoctorAvailabiltiyGateway(IDoctorAvailabiltyApi doctorAvailabiltyApi)
         {
             _doctorAvailabiltyApi = doctorAvailabiltyApi;
-                
+
         }
 
         public IEnumerable<SlotsDto> GetAvailabeSlots()
         {
-           return _doctorAvailabiltyApi.GetAvailabeSlots();
+            return _doctorAvailabiltyApi.GetAvailabeSlots();
         }
 
         public bool ReserveSlot(Guid slotId)
