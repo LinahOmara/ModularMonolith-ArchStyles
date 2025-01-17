@@ -20,7 +20,7 @@ namespace ModularMonolith_DotNetGirlsGrp.DoctorAvailability.Internal.BusinessLog
                 Id = new Guid(),
                 DoctorId = availability.DoctorId,
                 DoctorName = availability.DoctorName,
-                Time = availability.Time,
+                Time = availability.Time != null? availability.Time.Value : DateTime.Now.AddDays(1),
                 IsReserved = availability.IsReserved,
                 Cost = availability.Cost
             };

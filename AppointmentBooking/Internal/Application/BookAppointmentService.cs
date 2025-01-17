@@ -1,6 +1,8 @@
 ﻿using ModularMonolith_DotNetGirlsGrp.AppointmentBooking.Internal.Domain.Contracts;
 using ModularMonolith_DotNetGirlsGrp.AppointmentBooking.Internal.Domain.Models;
 using ModularMonolith_DotNetGirlsGrp.AppointmentBooking.Internal.Infrastructure.Gateways;
+using ModularMonolith_DotNetGirlsGrp.SharedUtilities;
+using ModularMonolith_DotNetGirlsGrp.AppointmentBooking.Shared;
 
 namespace ModularMonolith_DotNetGirlsGrp.AppointmentBooking.Internal.Application
 {
@@ -8,11 +10,16 @@ namespace ModularMonolith_DotNetGirlsGrp.AppointmentBooking.Internal.Application
     {
         private readonly IAppointmentBookingRepo _repo;
         private readonly DoctorAvailabiltiyGateway _doctorAvailabiltiyGateway;
+        private readonly IEventBus _eventBus;
 
-        public BookAppointmentService(IAppointmentBookingRepo repo, DoctorAvailabiltiyGateway doctorAvailabiltiyGateway)
+        public BookAppointmentService(IAppointmentBookingRepo repo,
+                                    DoctorAvailabiltiyGateway doctorAvailabiltiyGateway,
+                                     IEventBus eventBus)
         {
             _repo = repo;
             _doctorAvailabiltiyGateway = doctorAvailabiltiyGateway;
+            _eventBus = eventBus;
+
         }
 
         public bool BookAppointment(Appointment appointment)
@@ -28,7 +35,13 @@ namespace ModularMonolith_DotNetGirlsGrp.AppointmentBooking.Internal.Application
 
                 // update slot data
                 bool slotUpdated = UpdateSlotForBookedAppointment(appointment);
-
+                //publish booking event for confiramtion
+                _eventBus.Publish<AppointmentBookedEvent>(new AppointmentBookedEvent 
+                { 
+                    PatientName = appointment.PatientName!=null? appointment.PatientName:"",
+                    AppointmentTime =appointment.ReservedAt,
+                    DoctorName = firstAvail.DoctorName
+                });
                 return appAdded && slotUpdated;
             }
 

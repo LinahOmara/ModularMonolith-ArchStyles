@@ -3,36 +3,61 @@ namespace ModularMonolith_DotNetGirlsGrp.SharedUtilities
 {
     public class EventBus : IEventBus
     {
-        private readonly Dictionary<Type, List<object>> _handlers = new();
-        public async Task Publish<TEvent>(TEvent @event)
+       // private readonly Dictionary<Type, List<object>> _handlers = new();
+        private readonly Dictionary<Type, List<Type>> _handlers = new();
+
+        private readonly IServiceProvider _serviceProvider;
+        public EventBus(IServiceProvider serviceProvider)
+        {
+            _serviceProvider = serviceProvider;
+        }
+
+        //public void  Publish<TEvent>(TEvent @event)
+        //{
+        //    var eventType = typeof(TEvent);
+
+        //    if (_handlers.ContainsKey(eventType))
+        //    {
+        //        var handlers = _handlers[eventType];
+        //        foreach (var handler in handlers)
+        //        {
+        //            if (handler is IEventHandler<TEvent> eventHandler)
+        //            {
+        //                 eventHandler.Handle(@event);
+        //            }
+        //        }
+        //    }
+        //}
+
+        public void Publish<TEvent>(TEvent @event)
         {
             var eventType = typeof(TEvent);
 
             if (_handlers.ContainsKey(eventType))
             {
-                var handlers = _handlers[eventType];
-                foreach (var handler in handlers)
+                var handlerTypes = _handlers[eventType];
+                foreach (var handlerType in handlerTypes)
                 {
-                    if (handler is IEventHandler<TEvent> eventHandler)
+                    var handler = _serviceProvider.GetService(handlerType) as IEventHandler<TEvent>;
+                    if (handler != null)
                     {
-                        await eventHandler.Handle(@event);
+                         handler.Handle(@event);
                     }
                 }
             }
         }
-            
 
-        public void Subscribe<TEvent>(IEventHandler<TEvent> handler)
+        public void Subscribe<TEvent, IEventHandler>()
         {
             
         var eventType = typeof(TEvent);
 
             if (!_handlers.ContainsKey(eventType))
             {
-                _handlers[eventType] = new List<object>();
+                _handlers[eventType] = new List<Type>();
             }
-
-            _handlers[eventType].Add(handler);
+          var handlerType = typeof(IEventHandler);
+            _handlers[eventType].Add(handlerType);
         }
     }
 }

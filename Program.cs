@@ -9,6 +9,7 @@ using ModularMonolith_DotNetGirlsGrp.DoctorAvailability.Internal.Data;
 using ModularMonolith_DotNetGirlsGrp.DoctorAvailability.Shared;
 using ModularMonolith_DotNetGirlsGrp.SharedUtilities;
 using ModularMonolith_DotNetGirlsGrp.SharedUtilities.Data;
+using ModularMonolith_DotNetGirlsGrp.AppointmentConfirmation.Application.EventHandlers;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,6 +21,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 //Event Buss
 builder.Services.AddSingleton<IEventBus, EventBus>();
+builder.Services.AddSingleton<EventAggregator>();
+
 //builder.Services.AddSingleton<IEventHandler, EventHandler>();     
 //DB
 builder.Services.AddSingleton<DBContext>();
@@ -28,7 +31,7 @@ builder.Services.AddSingleton<DBContext>();
 builder.Services.AddScoped<IDoctorAppointmentManagementRepo, DoctorAppointmentManagementRepo>();
 builder.Services.AddScoped<IAppointmentBookingRepo, AppointmentBookingRepo>();
 builder.Services.AddScoped<DoctorAvailabilityRepo>();
-
+builder.Services.AddScoped<AppointementBookingHandler>();
 // apis
 builder.Services.AddScoped<IDoctorAvailabiltyApi, DoctorAvailabiltyApi>();
 
@@ -40,7 +43,11 @@ builder.Services.AddScoped<IDoctorAppointmentManagementService, DoctorAppointmen
 builder.Services.AddScoped<IBookAppointmentService, BookAppointmentService>();
 
 
+
 var app = builder.Build();
+
+app.Services.GetRequiredService<EventAggregator>();
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

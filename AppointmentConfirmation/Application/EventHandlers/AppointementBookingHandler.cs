@@ -3,11 +3,19 @@ using ModularMonolith_DotNetGirlsGrp.AppointmentBooking.Shared;
 
 namespace ModularMonolith_DotNetGirlsGrp.AppointmentConfirmation.Application.EventHandlers
 {
-    public class AppointementBookingHandler : IEventHandler<AppointmentBookedEvent> //TODO find correct place for AppointmentBookedEvent as it's coupled now
+    public class AppointementBookingHandler : IEventHandler<AppointmentBookedEvent> 
     {
-        public Task Handle(AppointmentBookedEvent @event)
+        private ILogger<AppointementBookingHandler> _logger;
+        public AppointementBookingHandler(ILogger<AppointementBookingHandler> logger)
         {
-            throw new NotImplementedException();
+            _logger = logger;
         }
+        public void  Handle(AppointmentBookedEvent appointmentBookedEvent)
+        {
+            _logger.LogInformation($"Appointment for Doctor{appointmentBookedEvent.DoctorName} with patient {appointmentBookedEvent.PatientName} at time {appointmentBookedEvent.AppointmentTime}  has been reserved");
+
+        }
+
+
     }
 }
