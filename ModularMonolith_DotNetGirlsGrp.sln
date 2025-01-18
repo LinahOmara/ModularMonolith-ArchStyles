@@ -5,7 +5,7 @@ VisualStudioVersion = 17.12.35527.113
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModularMonolith_DotNetGirlsGrp", "ModularMonolith_DotNetGirlsGrp.csproj", "{4DA4F091-72B0-4F22-AB32-16CA1F74F7EC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModularMonolith.Tests", "..\ModularMonolith.Tests\ModularMonolith.Tests.csproj", "{E50EF071-9115-4D5C-9466-81CD1F88593C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModularMonolith.Tests", "D:\Archi\ModularMonolith.Tests\ModularMonolith.Tests.csproj", "{AC2D3E89-C7FD-4666-B6E0-E7FA3558F038}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{4DA4F091-72B0-4F22-AB32-16CA1F74F7EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4DA4F091-72B0-4F22-AB32-16CA1F74F7EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4DA4F091-72B0-4F22-AB32-16CA1F74F7EC}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E50EF071-9115-4D5C-9466-81CD1F88593C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E50EF071-9115-4D5C-9466-81CD1F88593C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E50EF071-9115-4D5C-9466-81CD1F88593C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E50EF071-9115-4D5C-9466-81CD1F88593C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AC2D3E89-C7FD-4666-B6E0-E7FA3558F038}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC2D3E89-C7FD-4666-B6E0-E7FA3558F038}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC2D3E89-C7FD-4666-B6E0-E7FA3558F038}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC2D3E89-C7FD-4666-B6E0-E7FA3558F038}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
