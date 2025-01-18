@@ -1,6 +1,7 @@
-﻿using ModularMonolith_DotNetGirlsGrp.DoctorAvailability.Data;
+﻿using ModularMonolith_DotNetGirlsGrp.DoctorAvailability.Internal.Data;
+using ModularMonolith_DotNetGirlsGrp.SharedUtilities.Data;
 
-namespace ModularMonolith_DotNetGirlsGrp.DoctorAvailability.BusinessLogic
+namespace ModularMonolith_DotNetGirlsGrp.DoctorAvailability.Internal.BusinessLogic
 {
     // TODO add global exception annotation
     public class DoctorAvailabilityService
@@ -14,18 +15,18 @@ namespace ModularMonolith_DotNetGirlsGrp.DoctorAvailability.BusinessLogic
 
         public bool AddSlots(DoctorAvailabilityDto availability)
         {
-            var availabilityModel = new DoctorAvailabilityModel
+            var availabilityModel = new SlotEntity
             {
                 Id = new Guid(),
                 DoctorId = availability.DoctorId,
                 DoctorName = availability.DoctorName,
-                Time = availability.Time,
+                Time = availability.Time != null? availability.Time.Value : DateTime.Now.AddDays(1),
                 IsReserved = availability.IsReserved,
                 Cost = availability.Cost
             };
 
             var (isSucceeded, msg) = IsValidSlot(availabilityModel);
-            
+
             if (!isSucceeded)
             {
                 throw new ArgumentException(msg);
@@ -42,7 +43,7 @@ namespace ModularMonolith_DotNetGirlsGrp.DoctorAvailability.BusinessLogic
             return isAdded;
         }
 
-        public IEnumerable<DoctorAvailabilityDto> GetSlots() 
+        public IEnumerable<DoctorAvailabilityDto> GetSlots()
         {
             return _repo.GetSlots()
                  .Select(s => new DoctorAvailabilityDto
@@ -70,7 +71,7 @@ namespace ModularMonolith_DotNetGirlsGrp.DoctorAvailability.BusinessLogic
                 });
         }
 
-        private (bool isSucceeded, string errorMsg) IsValidSlot(DoctorAvailabilityModel availability)
+        private (bool isSucceeded, string errorMsg) IsValidSlot(SlotEntity availability)
         {
             var existingSlot = GetSlots()
                 .Where(s => s.Time == availability.Time);
