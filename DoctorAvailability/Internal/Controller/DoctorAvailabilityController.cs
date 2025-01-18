@@ -13,15 +13,15 @@ namespace ModularMonolith_DotNetGirlsGrp.DoctorAvailability.Internal.Controller
         }
 
         [HttpPost, Route("api/doctors/availabilities")]
-        public IActionResult AddSlot([FromBody] DoctorAvailabilityDto doctorAvailability)
+        public ActionResult<bool> AddSlot([FromBody] DoctorAvailabilityDto doctorAvailability)
         {
-            _service.AddSlots(doctorAvailability);
-            return Ok();
+            bool result = _service.AddSlots(doctorAvailability);
+            return Ok(result);
         }
 
 
         [HttpGet, Route("api/doctors/availabilities")]
-        public ActionResult<IEnumerable<DoctorAvailabilityDto>> GetSlot()
+        public ActionResult<IEnumerable<DoctorAvailabilityDto>> GetSlots()
         {
             var slots = _service.GetSlots();
             return Ok(slots);
