@@ -50,7 +50,7 @@ namespace ModularMonolith_DotNetGirlsGrp.DoctorAvailability.Internal.Data
 
         public IEnumerable<SlotEntity> GetAvailabeSlots()
         {
-            return _doctorAvailabilities.Where(da => da.IsReserved == false);
+            return _doctorAvailabilities.Where(da => da.IsReserved == false && da.Time>=DateTime.Now);
         }
 
         public bool ReserveSlot(Guid slotId)
