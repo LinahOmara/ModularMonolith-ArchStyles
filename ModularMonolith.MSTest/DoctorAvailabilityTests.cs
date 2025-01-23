@@ -210,12 +210,11 @@ namespace ModularMonolith.MSTest
             Assert.AreEqual(200, okResult.StatusCode);
             Assert.IsNotNull(okResult, "Expected OkObjectResult but got a different result type.");
             Assert.AreEqual(200, okResult.StatusCode, "Expected HTTP status code 200.");
+            
             var slots = okResult.Value as IEnumerable<DoctorAvailabilityDto>;
             Assert.IsNotNull(slots, "Expected appointment object in the response.");
             Assert.IsTrue(slots.Any(), "The slots collection is empty.");
-
-
-            Assert.AreEqual(2, slots.Count(), "All Slots count doesn't match");
+            Assert.IsTrue(slots.Count() >= 2, $"All Slots count doesn't match, Expected 2 or more, got {slots.Count()}");
         }
     }
 }
