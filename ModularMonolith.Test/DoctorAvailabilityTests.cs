@@ -1,11 +1,9 @@
-﻿using ModularMonolith_DotNetGirlsGrp.DoctorAvailability.Shared;
-using ModularMonolith_DotNetGirlsGrp.DoctorAvailability.Internal.Controller;
-using Moq;
-using ModularMonolith_DotNetGirlsGrp.DoctorAvailability.Internal.BusinessLogic;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using System.Collections.Generic;
+using ModularMonolit_DotNetGirlsGrp.
 
-namespace ModularMonolith.Tests
+namespace ModularMonolith.Test
 {
     [TestClass]
     public class DoctorAvailabilityTests
@@ -38,7 +36,7 @@ namespace ModularMonolith.Tests
             Assert.IsNotNull(okResult, "Expected OkObjectResult but got a different result type.");
             Assert.AreEqual(200, okResult.StatusCode, "Expected HTTP status code 200.");
             var isAdded = okResult.Value;
-            
+
             Assert.AreEqual(isAdded, true, "Not added successfully.");
         }
 
@@ -56,7 +54,7 @@ namespace ModularMonolith.Tests
                 Cost = 10,
                 DoctorName = "Invalid",
                 IsReserved = false,
-                Time = new DateTime(2025,10,10) 
+                Time = new DateTime(2025, 10, 10)
             };
 
             DoctorAvailabilityDto duplicatedRequest = new DoctorAvailabilityDto()
@@ -126,7 +124,7 @@ namespace ModularMonolith.Tests
             Assert.IsNotNull(slots, "Expected appointment object in the response.");
             Assert.IsTrue(slots.Any(), "The slots collection is empty.");
 
-            Assert.IsTrue( !slots.Any(s=>s.IsReserved == true), "Slots count doesn't match");
+            Assert.IsTrue(!slots.Any(s => s.IsReserved == true), "Slots count doesn't match");
         }
 
         [TestMethod]
@@ -172,7 +170,7 @@ namespace ModularMonolith.Tests
             Assert.IsTrue(slots.Any(), "The slots collection is empty.");
 
 
-            Assert.IsTrue(!slots.Any(s=>s.Time <=DateTime.Now), "Future Slots count doesn't match");
+            Assert.IsTrue(!slots.Any(s => s.Time <= DateTime.Now), "Future Slots count doesn't match");
         }
 
         [TestMethod]
